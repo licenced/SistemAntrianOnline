@@ -1,0 +1,105 @@
+/*
+ * metismenu - v2.7.2
+ * A jQuery menu plugin
+ * https://github.com/onokumus/metismenu#readme
+ *
+ * Made by Osman Nuri Okumus <onokumus@gmail.com> (https://github.com/onokumus)
+ * Under MIT License
+ */
+
+.metismenu .arrow{float:right;line-height:1.42857}[dir=rtl] .metismenu .arrow{float:left}.metismenu .glyphicon.arrow:before{content:"\e079"}.metismenu .active>a>.glyphicon.arrow:before{content:"\e114"}.metismenu .fa.arrow:before{content:"\f104"}.metismenu .active>a>.fa.arrow:before{content:"\f107"}.metismenu .ion.arrow:before{content:"\f3d2"}.metismenu .active>a>.ion.arrow:before{content:"\f3d0"}.metismenu .plus-times{float:right}[dir=rtl] .metismenu .plus-times{float:left}.metismenu .fa.plus-times:before{content:"\f067"}.metismenu .active>a>.fa.plus-times{-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg)}.metismenu .plus-minus{float:right}[dir=rtl] .metismenu .plus-minus{float:left}.metismenu .fa.plus-minus:before{content:"\f067"}.metismenu .active>a>.fa.plus-minus:before{content:"\f068"}.metismenu .collapse{display:none}.metismenu .collapse.in{display:block}.metismenu .collapsing{position:relative;height:0;overflow:hidden;-webkit-transition-timing-function:ease;-o-transition-timing-function:ease;transition-timing-function:ease;-webkit-transition-duration:.35s;-o-transition-duration:.35s;transition-duration:.35s;-webkit-transition-property:height,visibility;-o-transition-property:height,visibility;transition-property:height,visibility}.metismenu .has-arrow{position:relative}.metismenu .has-arrow:after{position:absolute;content:"";width:.5em;height:.5em;border-width:1px 0 0 1px;border-style:solid;border-color:initial;right:1em;-webkit-transform:rotate(-45deg) translateY(-50%);-ms-transform:rotate(-45deg) translateY(-50%);-o-transform:rotate(-45deg) translateY(-50%);transform:rotate(-45deg) translateY(-50%);-webkit-transform-origin:top;-ms-transform-origin:top;-o-transform-origin:top;transform-origin:top;top:50%;-webkit-transition:all .3s ease-out;-o-transition:all .3s ease-out;transition:all .3s ease-out}[dir=rtl] .metismenu .has-arrow:after{right:auto;left:1em;-webkit-transform:rotate(135deg) translateY(-50%);-ms-transform:rotate(135deg) translateY(-50%);-o-transform:rotate(135deg) translateY(-50%);transform:rotate(135deg) translateY(-50%)}.metismenu .active>.has-arrow:after,.metismenu .has-arrow[aria-expanded=true]:after{-webkit-transform:rotate(-135deg) translateY(-50%);-ms-transform:rotate(-135deg) translateY(-50%);-o-transform:rotate(-135deg) translateY(-50%);transform:rotate(-135deg) translateY(-50%)}
+
+.sidebar-nav {
+    background: #fff;
+}
+.sidebar-nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background: #f5f5f5;
+}
+
+.sidebar-nav .metismenu {
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.sidebar-nav .metismenu li + li {
+  margin-top: 5px;
+}
+
+.sidebar-nav .metismenu li:first-child {
+  margin-top: 5px;
+}
+.sidebar-nav .metismenu li:last-child {
+  margin-bottom: 5px;
+}
+
+
+.sidebar-nav .metismenu > li {
+/*    -webkit-box-flex: 1;
+    -ms-flex: 1 1 0%;
+    flex: 1 1 0%;*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    position: relative;
+}
+.sidebar-nav .metismenu a {
+    position: relative;
+    display: block;
+    padding: 13px 15px;
+    color: #444;
+    outline-width: 0;
+    transition: all .3s ease-out;
+	font-size:16px;
+}
+
+.sidebar-nav .metismenu ul a {
+    padding: 10px 15px 10px 30px;
+}
+
+.sidebar-nav .metismenu ul ul a {
+    padding: 10px 15px 10px 45px;
+}
+
+.sidebar-nav .metismenu a:hover,
+.sidebar-nav .metismenu a:focus,
+.sidebar-nav .metismenu a:active {
+    color: #f8f9fa;
+    text-decoration: none;
+    background: #e12503;
+}
+
+
+
+.sidebar-nav .metismenu li .icon-wrap{
+	margin-right:10px;
+	font-size:20px;
+}
+.sidebar-nav .metismenu li .sub-icon-mg{
+	margin-right:5px;
+	font-size:16px;
+}
+#sidebar.active .metismenu li .mini-click-non{
+	display:none;
+}
+#sidebar.active .metismenu li .has-arrow:after{
+	display:none;
+}
+#sidebar.active .metismenu li .submenu-angle li a {
+    padding: 10px 10px 10px 10px;
+}
+#sidebar.active .metismenu li .submenu-angle li .mini-sub-pro {
+    display:none;
+}
