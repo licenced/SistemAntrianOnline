@@ -25,9 +25,9 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 
 				<!-- Header -->
 					<header id="header">
-						<div class="logo">
-							<span class="icon fa-user"></span>
-						</div>
+						<!-- <div class="logo">
+							<span class="icon fa-dove"></span>
+						</div> -->
 						<div class="content">
 							<div class="inner">
 								<h1>SISTEM ANTRIAN ONLINE</h1>
