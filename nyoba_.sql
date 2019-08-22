@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2019 at 04:50 PM
+-- Generation Time: Aug 22, 2019 at 04:59 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -36,8 +36,17 @@ CREATE TABLE `tiket` (
   `tanggal` date NOT NULL,
   `jam` time NOT NULL,
   `keluhan` varchar(100) NOT NULL,
-  `keterangan` varchar(7) NOT NULL DEFAULT 'belum'
+  `keterangan` varchar(7) NOT NULL DEFAULT 'belum',
+  `pembuat` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tiket`
+--
+
+INSERT INTO `tiket` (`id_tiket`, `no_plat`, `tanggal`, `jam`, `keluhan`, `keterangan`, `pembuat`) VALUES
+(1, 'BE 45 IAP', '2019-08-23', '10:10:00', 'Ban depannya copot', 'belum', 10),
+(2, 'BE 1 RI', '2019-08-23', '11:00:00', 'Stangnya copot', 'belum', 8);
 
 -- --------------------------------------------------------
 
@@ -72,7 +81,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `nik`, `mobile`, `level`
 -- Indexes for table `tiket`
 --
 ALTER TABLE `tiket`
-  ADD PRIMARY KEY (`id_tiket`);
+  ADD PRIMARY KEY (`id_tiket`),
+  ADD KEY `pembuat` (`pembuat`);
 
 --
 -- Indexes for table `users`
@@ -88,13 +98,23 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tiket`
 --
 ALTER TABLE `tiket`
-  MODIFY `id_tiket` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tiket` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tiket`
+--
+ALTER TABLE `tiket`
+  ADD CONSTRAINT `pembuat` FOREIGN KEY (`pembuat`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
