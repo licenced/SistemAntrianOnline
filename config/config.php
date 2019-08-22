@@ -1,7 +1,7 @@
 <?php
 
 $databaseHost = 'localhost';
-$databaseName = 'nyoba';
+$databaseName = 'antrian';
 $databaseUsername = 'root';
 $databasePassword = '';
 
