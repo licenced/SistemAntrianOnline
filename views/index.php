@@ -1,6 +1,13 @@
 <?php
+session_start();
 include_once "../base_url.php";
-echo $base_url;
+if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session email berarti sudah login
+    header("location: dashboard_admin.php"); // Kita Redirect ke halaman dash.php karena sudah login
+} elseif (isset($_SESSION['email'])){
+	header("location: dash.php");
+}else {
+	
+}
 ?>
 <!DOCTYPE HTML>
 <html>

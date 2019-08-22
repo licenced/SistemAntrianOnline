@@ -71,8 +71,8 @@ include_once "../base_url.php";
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
                             
-                            <li class="active1"><a title="Tiket" href="dash.php"><i class="fa fa-plus-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Tiket</span></a></li>
-                            <li class=""><a title="Antrian" href="antrian.php"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Antrian</span></a></li>
+                            <li class="active1"><a title="Tiket" href="dashboard_admin.php"><i class="fa fa-plus-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Tiket</span></a></li>
+                            <li class=""><a title="Antrian" href="antrian_admin.php"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Antrian</span></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -187,7 +187,7 @@ include_once "../base_url.php";
                     <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
                         <h4 class="text-left text-uppercase"><b>Daftar Tiket</b> <a data-target="#tambah_ticket" id="tambah_mod_ticket" href="#" data-toggle="modal" style="text-decoration:none;" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-square" aria-hidden="true"></i> Buat Ticket</a></h4>
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#1">Belum-Dikerjakan-Sesi 1</a></li>
+                            <li class="active"><a data-toggle="tab" href="#1">Belum-Dikerjakan</a></li>
                             <li><a data-toggle="tab" href="#2">Belum-Dikerjakan-Sesi 2</a></li>
                             <li><a data-toggle="tab" href="#3">Selesai-Dikerjakan</a></li>
                         </ul>
@@ -206,6 +206,7 @@ include_once "../base_url.php";
                                         <th>No Handphone</th>
                                         <th>Plat Nomor</th>
                                         <th>Deskripsi Kerusakan</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -213,7 +214,8 @@ include_once "../base_url.php";
                                         include '../config/config.php';
                                         $id = $_SESSION['id'];
                                         $no = 1;
-                                        $tiket = mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE pembuat='$id' AND keterangan='belum'");
+                                        $verifikasi = "";
+                                        $tiket = mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE keterangan='belum'");
                                         if($tiket){
                                             while($row = mysqli_fetch_array($tiket))
                                             {
@@ -226,10 +228,16 @@ include_once "../base_url.php";
                                                 <td>".$row['mobile']."</td>
                                                 <td>".$row['no_plat']."</td>
                                                 <td>".$row['keluhan']."</td>
-                                            </tr>";
+                                                <td>
+                                                    <form method='post' action='".$base_url."/controller/verifikasi.php'>
+                                                        <input type='submit' name='verifikasi' value='Verifikasi'/>
+                                                        <input type='hidden' name='id' value=".$row['id_tiket'].">
+                                                    </form>
+                                                </td>
+                                                </tr>";
                                             }
                                         }
-                                       
+                                        
                                     ?>
                                                                     
                                 </tbody>
@@ -249,36 +257,42 @@ include_once "../base_url.php";
                                         <th>Motor</th>
                                         <th>Plat Nomor</th>
                                         <th>Deskripsi Kerusakan</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php 
                                 $no2 = 1;
-                                $tiket2 = mysqli_query($mysqli,"SELECT tiket_sesi2.*, users.name, users.nik, users.mobile FROM tiket_sesi2 INNER JOIN users ON tiket_sesi2.pembuat=users.id WHERE pembuat='$id' AND keterangan='belum'");
+                                $tiket2 = mysqli_query($mysqli,"SELECT tiket_sesi2.*, users.name, users.nik, users.mobile FROM tiket_sesi2 INNER JOIN users ON tiket_sesi2.pembuat=users.id WHERE keterangan='belum'");
                                 if($tiket2){
                                     while($row = mysqli_fetch_array($tiket2))
-                                    {
-                                        echo "<tr>
-                                        <td>".$no2++."</td>
-                                        <td>".$row['id_tiket']."</td>
-                                        <td>".$row['tanggal']."</td>
-                                        <td>".$row['name']."</td>
-                                        <td>".$row['nik']."</td>
-                                        <td>".$row['mobile']."</td>
-                                        <td>".$row['no_plat']."</td>
-                                        <td>".$row['keluhan']."</td>
-                                    </tr>";
-                                    }
-                                }        
-                                
+                                        {
+                                            echo "<tr>
+                                            <td>".$no2++."</td>
+                                            <td>".$row['id_tiket']."</td>
+                                            <td>".$row['tanggal']."</td>
+                                            <td>".$row['name']."</td>
+                                            <td>".$row['nik']."</td>
+                                            <td>".$row['mobile']."</td>
+                                            <td>".$row['no_plat']."</td>
+                                            <td>".$row['keluhan']."</td>
+                                            <td>
+                                                <form method='post' action='".$base_url."/controller/verifikasi.php'>
+                                                    <input type='submit' name='verifikasi-sesi2' value='Verifikasi'/>
+                                                    <input type='hidden' name='id' value=".$row['id_tiket'].">
+                                                </form>
+                                            </td>
+                                        </tr>";
+                                        }
+                                }
+                                        
                                 ?>
 
                                 </tbody>
                             </table>
                             </div>
 
-                            
-                            
+                    
                             <div id="3" class="tab-pane fade">
                                 <table id="daftar3" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-resizable="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover table-responsive" style="width: 100%">
@@ -297,23 +311,23 @@ include_once "../base_url.php";
                                 <tbody>
                                 <?php 
                                 $no2 = 1;
-                                $tiket2 = mysqli_query($mysqli,"SELECT history_tiket.*, users.name, users.nik, users.mobile FROM history_tiket INNER JOIN users ON history_tiket.pembuat=users.id WHERE pembuat='$id'");
+                                $tiket2 = mysqli_query($mysqli,"SELECT history_tiket.*, users.name, users.nik, users.mobile FROM history_tiket INNER JOIN users ON history_tiket.pembuat=users.id WHERE keterangan='selesai'");
                                 if($tiket2){
                                     while($row = mysqli_fetch_array($tiket2))
-                                    {
-                                        echo "<tr>
-                                        <td>".$no2++."</td>
-                                        <td>".$row['id_tiket']."</td>
-                                        <td>".$row['tanggal']."</td>
-                                        <td>".$row['name']."</td>
-                                        <td>".$row['nik']."</td>
-                                        <td>".$row['mobile']."</td>
-                                        <td>".$row['no_plat']."</td>
-                                        <td>".$row['keluhan']."</td>
-                                    </tr>";
-                                    }
-                                }        
-                                
+                                        {
+                                            echo "<tr>
+                                            <td>".$no2++."</td>
+                                            <td>".$row['id_tiket']."</td>
+                                            <td>".$row['tanggal']."</td>
+                                            <td>".$row['name']."</td>
+                                            <td>".$row['nik']."</td>
+                                            <td>".$row['mobile']."</td>
+                                            <td>".$row['no_plat']."</td>
+                                            <td>".$row['keluhan']."</td>
+                                        </tr>";
+                                        }
+                                }
+                                        
                                 ?>
 
                                 </tbody>

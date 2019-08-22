@@ -12,10 +12,15 @@ if(!empty($data)){ // Jika tidak sama dengan empty (kosong)
   $_SESSION['email'] = $data['email']; // Set session untuk username (simpan username di session)
   $_SESSION['nama'] = $data['name']; // Set session untuk nama (simpan nama di session)
   $_SESSION['id'] = $data['id'];
+  $_SESSION['level'] = $data['level'];
   
   setcookie("message","delete",time()-1); // Kita delete cookie message
-  
-  header("location: ../views/dash.php"); // Kita redirect ke halaman welcome.php
+  if ($_SESSION['level'] == 1){
+    header("location: ../views/dashboard_admin.php"); // Kita redirect ke halaman welcome.php
+  }else {
+    header("location: ../views/dash.php"); // Kita redirect ke halaman welcome.php
+  }
+
 }else{ // Jika $data nya kosong
   // Buat sebuah cookie untuk menampung data pesan kesalahan
   setcookie("message", "Maaf, Email atau Password salah", time()+3600);
