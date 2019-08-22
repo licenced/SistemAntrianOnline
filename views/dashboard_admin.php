@@ -12,7 +12,7 @@ include_once "../base_url.php";
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Dashboard</title>
+    <title>Dashboard Admin</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -58,7 +58,7 @@ include_once "../base_url.php";
     <nav id="sidebar" class="" style="width: 210px">
         <div class="sidebar-header">
             <a href="#">
-              <h3 style="color: #D01F05">DASHBOARD</h3>
+                <h3 style="color: #D01F05">DASHBOARD</h3>
             </a>
         </div>
         <div class="left-custom-menu-adp-wrap comment-scrollbar">
@@ -66,8 +66,8 @@ include_once "../base_url.php";
                 <ul class="metismenu" id="menu1">
                     <li class="active">
                         <a class="has-arrow" href="index.html">
-                           <i class="fa big-icon fa-home icon-wrap"></i>
-                           <span class="mini-click-non">Master Ticket</span>
+                            <i class="fa big-icon fa-home icon-wrap"></i>
+                            <span class="mini-click-non">Master Tiket</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
                             
@@ -80,8 +80,6 @@ include_once "../base_url.php";
         </div>
     </nav>
 </div>
-
-
 
 <div class="all-content-wrapper">
     <div class="header-advance-area">
@@ -132,6 +130,7 @@ include_once "../base_url.php";
                 </div>
             </div>
         </div>
+
         <!-- Mobile Menu start -->
         <div class="mobile-menu-area">
             <div class="container">
@@ -142,7 +141,7 @@ include_once "../base_url.php";
                                 <ul class="mobile-menu-nav">
                                     <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Master Ticket <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                         <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                            <li><a href="#">Ticket</a>
+                                            <li><a href="#">Tiket</a>
                                             </li>
                                             <li><a href="#">Antrian</a>
                                             </li>
@@ -155,6 +154,7 @@ include_once "../base_url.php";
                 </div>
             </div>
         </div>
+
         <!-- Mobile Menu end -->
         <div class="breadcome-area">
             <div class="container-fluid">
@@ -179,13 +179,14 @@ include_once "../base_url.php";
             </div>
         </div>
     </div>
+
 <div class="section-admin container-fluid">
     <div class="row admin text-center">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
-                        <h4 class="text-left text-uppercase"><b>Daftar Tiket</b> <a data-target="#tambah_ticket" id="tambah_mod_ticket" href="#" data-toggle="modal" style="text-decoration:none;" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-square" aria-hidden="true"></i> Buat Ticket</a></h4>
+                        <h4 class="text-left text-uppercase"><b>Daftar Tiket</b></h4>
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#1">Belum-Dikerjakan</a></li>
                             <li><a data-toggle="tab" href="#2">Belum-Dikerjakan-Sesi 2</a></li>
@@ -341,102 +342,13 @@ include_once "../base_url.php";
     </div>
 </div>
 
-
-
-
-<!-- Modal Tambah ticket -->
-<div class="modal fade" id="tambah_ticket" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tambah Ticket</h4>
-        </div>
-        <div class="modal-body">
-          <div class="panel-body">
-                <form id="form_ticket" method="POST" action="<?php echo $base_url ?>views/no_antrian.php">
-                 <br>
-                <table class="table table-striped table-bordered table-hover">
-                    <tr>
-                        <th class="col-md-4">Tanggal Booking</th>
-                        <td class="col-md-8">
-                            <input type="date" name="tanggal" required>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th class="col-md-4">Jam Booking</th>
-                        <td class="col-md-8">
-                            <select name="sesi" id="sesi" class="form-control" required>
-                                <option value="">---- pilih ----</option>
-                                                                <option value="sesi-1" >Sesi 1 : 08:00-12:00</option>
-                                                                <option value="sesi-2" >Sesi 2 : 13:00-15.30</option>
-                                                               
-                            </select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th class="col-md-4">No. Plat</th>
-                        <td class="col-md-8">
-                            <input type="text" name="plat" required>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th class="col-md-4">Kerusakan</th>
-                        <td class="col-md-8">
-                            <textarea id="kerusakan" name="kerusakan" class="form-control" required></textarea>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <div id="notif_sukses"></div>
-                        </td>
-                        <td>
-                            <div style="float:right;">
-                                <input type="reset" value="Hapus" class=" btn btn-danger">
-                                
-                                <input type="text" style="display: none" name="action" id="action"/>
-                            </div>
-                            <div style="float:right;">
-                                <input type="submit" name="Submit" value="Simpan" class=" btn btn-warning">
-                                
-                                <input type="text" style="display: none" name="action" id="action"/>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                </form>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
-
-
-
-<!-- Modal popup antrian -->
-<div class="modal fade" id="buat_tiket" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h1 class="modal-title">Nomor Antrian Kamu</h1>
-        </div>
-        
-      </div>
-    </div>
-</div>
-
     <br/><br/><br/><br/><br/><br/>
     <div class="footer-copyright-area" style="position: fixed; bottom: 0px; left: 0px;width: 100%">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer-copy-right">
-                        <p>Copyright &copy; 2019 <a href="">Me. </a> All rights reserved.</p>
+                    <p class="copyright">Copyright &copy; 2019 D.A.M </p>
                     </div>
                 </div>
             </div>
@@ -447,62 +359,62 @@ include_once "../base_url.php";
 
     <!-- jquery
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/vendor/jquery-1.11.3.min.js"></script>
+        <script src="<?php echo $base_url ?>assets/js/vendor/jquery-1.11.3.min.js"></script>
     <!-- bootstrap JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/bootstrap.min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/bootstrap.min.js"></script>
     <!-- wow JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/wow.min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/wow.min.js"></script>
     <!-- price-slider JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/jquery-price-slider.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/jquery-price-slider.js"></script>
     <!-- meanmenu JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/jquery.meanmenu.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/jquery.meanmenu.js"></script>
     <!-- owl.carousel JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/owl.carousel.min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/owl.carousel.min.js"></script>
     <!-- sticky JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/jquery.sticky.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/jquery.sticky.js"></script>
     <!-- scrollUp JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/jquery.scrollUp.min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/jquery.scrollUp.min.js"></script>
     <!-- mCustomScrollbar JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/scrollbar/mCustomScrollbar-active.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/scrollbar/mCustomScrollbar-active.js"></script>
     <!-- metisMenu JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/metisMenu/metisMenu.min.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/metisMenu/metisMenu-active.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/metisMenu/metisMenu.min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/metisMenu/metisMenu-active.js"></script>
     <!-- morrisjs JS
         ============================================ -->
-    <!-- <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/morrisjs/raphael-min.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/morrisjs/morris.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/morrisjs/morris-active.js"></script> -->
-    <!-- morrisjs JS
+    <!-- <script src="<?php echo $base_url ?>assets/js/morrisjs/raphael-min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/morrisjs/morris.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/morrisjs/morris-active.js"></script> 
+    morrisjs JS 
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/sparkline/jquery.sparkline.min.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/sparkline/jquery.charts-sparkline.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/sparkline/jquery.charts-sparkline.js"></script>
     <!-- calendar JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/calendar/moment.min.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/calendar/fullcalendar.min.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/calendar/fullcalendar-active.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/calendar/moment.min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/calendar/fullcalendar.min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/calendar/fullcalendar-active.js"></script>
     <!-- plugins JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/plugins.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/plugins.js"></script>
     <!-- main JS
         ============================================ -->
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/main.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets/Highcharts-5.0.6/highcharts.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/vendor/modernizr-2.8.3.min.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/data-table/bootstrap-table.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/data-table/tableExport.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/data-table/data-table-active.js"></script>
-    <script src="http://helpdesk.tik.itera.ac.id/assets/zoom-master/js/zoom.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/mains.js"></script>
+    <!-- <script src="http://helpdesk.tik.itera.ac.id/assets/Highcharts-5.0.6/highcharts.js"></script> -->
+    <script src="<?php echo $base_url ?>assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/data-table/bootstrap-table.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/data-table/tableExport.js"></script>
+    <script src="<?php echo $base_url ?>assets/js/data-table/data-table-active.js"></script>
+    <!-- <script src="http://helpdesk.tik.itera.ac.id/assets/zoom-master/js/zoom.js"></script> -->
 </body>
 
 </html>
