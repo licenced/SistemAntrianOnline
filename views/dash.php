@@ -308,46 +308,39 @@ include_once "../base_url.php";
         </div>
         <div class="modal-body">
           <div class="panel-body">
-                <form id="form_ticket" method="POST">
+                <form id="form_ticket" method="POST" action="<?php echo $base_url ?>controller/buattiket.php">
                  <br>
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
                         <th class="col-md-4">Tanggal Booking</th>
                         <td class="col-md-8">
-                            <select name="layanan" id="layanan" class="form-control" required>
+                            <input type="date" name="tanggal" required>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="col-md-4">Jam Booking</th>
+                        <td class="col-md-8">
+                            <select name="sesi" id="sesi" class="form-control" required>
                                 <option value="">---- pilih ----</option>
-                                                                <option value="2" >Layanan SSO</option>
-                                                                <option value="3" >Layanan E-Learning</option>
-                                                                <option value="4" >Layanan Hotspot</option>
-                                                                <option value="5" >Layanan E-Mail</option>
-                                                                <option value="6" >Jaringan LAN</option>
-                                                                <option value="7" >Koneksi Internet</option>
-                                                                <option value="8" >Printer</option>
-                                                                <option value="9" >Install Ulang PC/Laptop ITERA</option>
-                                                                <option value="10" >Request Pengembangan Sistem Informasi</option>
-                                                                <option value="11" >Kritik Dan Saran (Terkait Aplikasi/Sistem)</option>
-                                                                <option value="12" >Aplikasi Pocket ITERA</option>
-                                                            </select>
+                                                                <option value="sesi-1" >Sesi 1 : 08:00-12:00</option>
+                                                                <option value="sesi-2" >Sesi 2 : 13:00-15.30</option>
+                                                               
+                            </select>
                         </td>
                     </tr>
+
                     <tr>
-                        <th class="col-md-4">Keterangan</th>
+                        <th class="col-md-4">No. Plat</th>
                         <td class="col-md-8">
-                            <textarea id="keterangan" name="keterangan" class="form-control" required>
-                                
-                            </textarea>
+                            <input type="text" name="plat" required>
                         </td>
                     </tr>
+
                     <tr>
-                        <th class="col-md-4">Lokasi</th>
+                        <th class="col-md-4">Kerusakan</th>
                         <td class="col-md-8">
-                            <input type="text" id="lokasi" name="lokasi" class="form-control" placeholder="ex: Kepegawaian" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="col-md-4">Screenshoot (opsinoal)</th>
-                        <td class="col-md-8">
-                           <input type="File" name="file_upload" id="file_upload" class="form-control">
+                            <textarea id="kerusakan" name="kerusakan" class="form-control" required></textarea>
                         </td>
                     </tr>
                     
@@ -357,7 +350,12 @@ include_once "../base_url.php";
                         </td>
                         <td>
                             <div style="float:right;">
-                                <input type="submit" name="simpan" value="Simpan" class=" btn btn-warning">
+                                <input type="reset" value="Hapus" class=" btn btn-danger">
+                                
+                                <input type="text" style="display: none" name="action" id="action"/>
+                            </div>
+                            <div style="float:right;">
+                                <input type="submit" name="Submit" value="Simpan" class=" btn btn-warning">
                                 
                                 <input type="text" style="display: none" name="action" id="action"/>
                             </div>
