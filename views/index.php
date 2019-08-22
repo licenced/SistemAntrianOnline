@@ -25,18 +25,17 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 
 				<!-- Header -->
 					<header id="header">
-						<!-- <div class="logo">
+						<div class="logo">
 							<span class="icon fa-user"></span>
-						</div> -->
+						</div>
 						<div class="content">
 							<div class="inner">
 								<h1>SISTEM ANTRIAN ONLINE</h1>
-								<pre><code>... </code></pre>
 							</div>
 						</div>
 						<nav>
 							<ul>
-								<li><a href="#akun">Buat Akun </a></li>
+								<li><a href="#akun">Buat Akun</a></li>
 								<li><a href="#masuk">Masuk</a></li>
 							</ul>
 						</nav>
@@ -69,7 +68,6 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 							</section>
 						</article>
 
-
 						<!-- buat akun -->
 						<article id="akun">
 							<h2 class="major">Buat Akun</h2>
@@ -87,11 +85,11 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 										</div>
 										<div class="field half">
 											<label>Password</label>
-											<input type="password" name="password" />
+											<input type="password" name="password" placeholder="********"/>
 										</div>
 										<div class="field half">
 											<label>Konfirmasi Password</label>
-											<input type="password" name="password2" />
+											<input type="password" name="password2" placeholder="********"/>
 										</div>
 										<div class="field ">
 											<label>No. Handphone</label>
@@ -109,14 +107,12 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 								</form>
 							</section>
 						</article>
-
 					</div>
 
 				<!-- Footer -->
 					<footer id="footer">
 						<p class="copyright">Copyright &copy; D.A.M </p>
 					</footer>
-
 			</div>
 
 		<!-- BG -->
