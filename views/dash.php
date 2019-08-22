@@ -1,4 +1,8 @@
 <?php
+session_start();
+if( ! isset($_SESSION['email'])){ // Jika tidak ada session username berarti dia belum login
+    header("location: index.php"); // Kita Redirect ke halaman index.php karena belum login
+}
 include_once "../base_url.php";
 
 ?>
@@ -34,10 +38,6 @@ include_once "../base_url.php";
     <!-- metisMenu CSS
     ============================================ -->
     <link rel="stylesheet" href="<?php echo $base_url ?>assets/css/metisMenu.min.css" />
-    <!-- calendar CSS
-    ============================================ -->
-    <link rel="stylesheet" href="<?php echo $base_url ?>assets/css/fullcalendar.min.css" />
-    <link rel="stylesheet" href="<?php echo $base_url ?>assets/css/fullcalendar.print.min.css" />
     <!-- style CSS
     ============================================ -->
     <link rel="stylesheet" href="<?php echo $base_url ?>assets/css/style.css" />
@@ -57,7 +57,7 @@ include_once "../base_url.php";
 <body><div class="left-sidebar-pro" >
     <nav id="sidebar" class="" style="width: 210px">
         <div class="sidebar-header">
-            <a href="http://helpdesk.tik.itera.ac.id/">
+            <a href="#">
               <h3 style="color: #D01F05">DASHBOARD</h3>
             </a>
         </div>
@@ -70,8 +70,8 @@ include_once "../base_url.php";
                            <span class="mini-click-non">Master Ticket</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
-                            <li class=""><a title="Dashboard v.1" href="http://helpdesk.tik.itera.ac.id/user"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Dashboard</span></a></li>
-                            <li class="active1"><a title="Dashboard v.2" href="http://helpdesk.tik.itera.ac.id/user/ticket"><i class="fa fa-plus-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Ticket</span></a></li>
+                            <li class=""><a title="Dashboard v.1" href="#"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Dashboard</span></a></li>
+                            <li class="active1"><a title="Dashboard v.2" href="#"><i class="fa fa-plus-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Ticket</span></a></li>
                             
                         </ul>
                     </li>
@@ -83,17 +83,6 @@ include_once "../base_url.php";
 
 
 <div class="all-content-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="logo-pro">
-                    <a href="http://helpdesk.tik.itera.ac.id/">
-                        <h3 style="color: #D01F05">HELPDESK TIK - ITERA</h3>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="header-advance-area">
         <div class="header-top-area">
             <div class="container-fluid">
@@ -113,12 +102,6 @@ include_once "../base_url.php";
                                         <ul class="nav navbar-nav mai-top-nav">
                                             <li class="nav-item"><a href="#" class="nav-link" style="color: ">DASHBOARD - Sistem Antrian Online</a>
                                             </li>
-                                            <!-- <li class="nav-item"><a href="#" class="nav-link">About</a>
-                                            </li>
-                                            <li class="nav-item"><a href="#" class="nav-link">Services</a>
-                                            </li>
-                                            <li class="nav-item"><a href="#" class="nav-link">Support</a>
-                                            </li> -->
                                         </ul>
                                     </div>
                                 </div>
@@ -142,12 +125,12 @@ include_once "../base_url.php";
                                             <li class="nav-item">
                                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                         <i class="fa fa-user adminpro-user-rounded header-riht-inf" aria-hidden="true"></i>
-                                                        <span class="admin-name">Doni Agus Adila</span>
+                                                        <span class="admin-name"><?php echo $_SESSION['nama'] ?></span>
                                                         <i class="fa fa-angle-down adminpro-icon adminpro-down-arrow"></i>
                                                     </a>
                                                 <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                     
-                                                    <li><a href="http://helpdesk.tik.itera.ac.id/login/signout"><span class="fa fa-lock author-log-ic"></span>Log Out</a>
+                                                    <li><a href="../controller/logout.php"><span class="fa fa-lock author-log-ic"></span>Log Out</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -171,9 +154,9 @@ include_once "../base_url.php";
                                 <ul class="mobile-menu-nav">
                                                                         <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Master Ticket <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                         <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                            <li><a href="http://helpdesk.tik.itera.ac.id/user">Dashboard</a>
+                                            <li><a href="#">Dashboard</a>
                                             </li>
-                                            <li><a href="http://helpdesk.tik.itera.ac.id/user/ticket">Ticket</a>
+                                            <li><a href="#">Ticket</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -200,12 +183,6 @@ include_once "../base_url.php";
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <!-- <ul class="breadcome-menu">
-                                        <li><a href="#">Home</a> <span class="bread-slash">/</span>
-                                        </li>
-                                        <li><span class="bread-blod">Dashboard V.1</span>
-                                        </li>
-                                    </ul> -->
                                 </div>
                             </div>
                         </div>
@@ -223,13 +200,12 @@ include_once "../base_url.php";
                         <h4 class="text-left text-uppercase"><b>Daftar Tiket</b> <a data-target="#tambah_ticket" id="tambah_mod_ticket" href="#" data-toggle="modal" style="text-decoration:none;" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-square" aria-hidden="true"></i> Buat Ticket</a></h4>
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#1">Belum-Dikerjakan</a></li>
-                            <li><a data-toggle="tab" href="#2">Sedang-Dikerjakan</a></li>
                             <li><a data-toggle="tab" href="#3">Selesai-Dikerjakan</a></li>
                         </ul>
 
                         <div class="tab-content">
                             <div id="1" class="tab-pane fade in active table-responsive">
-                                <table id="daftar" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                <table id="daftar" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -238,38 +214,41 @@ include_once "../base_url.php";
                                         <th>Tgl Ticket</th>
                                         <th>Nama</th>
                                         <th>NIK</th>
-                                        <th>Motor</th>
+                                        <th>No Handphone</th>
                                         <th>Plat Nomor</th>
                                         <th>Deskripsi Kerusakan</th>
-                                        <th>Status</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                                                    </tbody>
+                                    <?php
+                                        include '../config/config.php';
+                                        $id = $_SESSION['id'];
+                                        $no = 1;
+                                        $tiket = mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE pembuat='$id' AND keterangan='belum'");
+                                        while($row = mysqli_fetch_array($tiket))
+                                        {
+                                            echo "<tr>
+                                            <td>".$no."</td>
+                                            <td>".$row['id_tiket']."</td>
+                                            <td>".$row['tanggal']."</td>
+                                            <td>".$row['name']."</td>
+                                            <td>".$row['nik']."</td>
+                                            <td>".$row['mobile']."</td>
+                                            <td>".$row['no_plat']."</td>
+                                            <td>".$row['keluhan']."</td>
+                                            <td><button>Verifikasi</button></td>
+                                        </tr>";
+                                        $no+1;
+                                        }
+                                    ?>
+                                                                    
+                                </tbody>
                             </table>
                             </div>
-                            <div id="2" class="tab-pane fade">
-                                <table id="daftar2" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover table-responsive" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                       <th width="col-md-1">No</th>
-                                        <th>No Ticket</th>
-                                        <th>Tgl Ticket</th>
-                                        <th>Nama</th>
-                                        <th>NIK</th>
-                                        <th>Motor</th>
-                                        <th>Plat Nomor</th>
-                                        <th>Deskripsi Kerusakan</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                                                    </tbody>
-                            </table>
-                            </div>
+                            
                             <div id="3" class="tab-pane fade">
-                                <table id="daftar3" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                <table id="daftar3" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-resizable="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover table-responsive" style="width: 100%">
                                 <thead>
                                     <tr>
@@ -285,7 +264,27 @@ include_once "../base_url.php";
                                     </tr>
                                 </thead>
                                 <tbody>
-                                                                    </tbody>
+                                <?php 
+                                $no2 = 1;
+                                $tiket2 = mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE pembuat='$id' AND keterangan='selesai'");
+                                        while($row = mysqli_fetch_array($tiket2))
+                                        {
+                                            echo "<tr>
+                                            <td>".$no."</td>
+                                            <td>".$row['id_tiket']."</td>
+                                            <td>".$row['tanggal']."</td>
+                                            <td>".$row['name']."</td>
+                                            <td>".$row['nik']."</td>
+                                            <td>".$row['mobile']."</td>
+                                            <td>".$row['no_plat']."</td>
+                                            <td>".$row['keluhan']."</td>
+                                            <td><button>Verifikasi</button></td>
+                                        </tr>";
+                                        $no2+1;
+                                        }
+                                ?>
+
+                                </tbody>
                             </table>
                             </div>
                         </div>
@@ -313,11 +312,7 @@ include_once "../base_url.php";
                  <br>
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
-                        <th class="col-md-4">No Ticket</th>
-                        <td class="col-md-8"><input type="text" name="no_ticket" id="no_ticket" class="form-control" value="TIC-090518-2307" readonly></td>
-                    </tr>
-                    <tr>
-                        <th class="col-md-4">Nama Layanan</th>
+                        <th class="col-md-4">Tanggal Booking</th>
                         <td class="col-md-8">
                             <select name="layanan" id="layanan" class="form-control" required>
                                 <option value="">---- pilih ----</option>
@@ -355,30 +350,6 @@ include_once "../base_url.php";
                            <input type="File" name="file_upload" id="file_upload" class="form-control">
                         </td>
                     </tr>
-                   <!--  <tr>
-                        <th class="col-md-4">Waktu Selesai</th>
-                        <td class="col-md-8">
-                            <input type="text" id="waktu_selesai" name="waktu_selesai" class="form-control tgl" placeholder="">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="col-md-4">Catatan Teknisi</th>
-                        <td class="col-md-8">
-                            <textarea id="catatan_teknisi" name="catatan_teknisi" class="form-control">
-                                
-                            </textarea>
-                        </td>
-                    </tr> -->
-                    <!-- <tr>
-                        <th class="col-md-4">Status</th>
-                        <td class="col-md-8">
-                            <select id="status" name="status" class="form-control">
-                                <option value="Belum-Dikerjakan">Belum-Dikerjakan</option>
-                                <option value="Sedang-Dikerjakan">Sedang-Dikerjakan</option>
-                                <option value="Selesai-Dikerjakan">Selesai-Dikerjakan</option>
-                            </select>
-                        </td>
-                    </tr> -->
                     
                     <tr>
                         <td>
@@ -424,59 +395,6 @@ include_once "../base_url.php";
         </div>
     </div>
 <!-- End Delete Modal -->
-
-<!-- Modal Tambah Teknisi -->
-<div class="modal fade" id="tambah_teknisi" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Tambah Teknisi</h4>
-        </div>
-        <div class="modal-body">
-          <div class="panel-body">
-                <form id="form_teknisi" method="POST">
-                 <br>
-                <table class="table table-striped table-bordered table-hover">
-                    <tr>
-                        <th class="col-md-4">Nama Teknisi</th>
-                        <td class="col-md-8">
-                            <select name="teknisi" id="teknisi" class="form-control" required>
-                                <option value="">---- pilih ----</option>
-                                                                <option value="ridho.magribi@staff.itera.ac.id" >M. Ridho Magribi, S.Kom.</option>
-                                                                <option value="okta.pilopa@staff.itera.ac.id" >Okta Pilopa, A. Md., S. Pd. I</option>
-                                                                <option value="erga.syafitri@fa.itera.ac.id" >Erga Syafitri, S.Farm., M.Si., Apt.</option>
-                                                                <option value="danzen.permana@staff.itera.ac.id" >Danzen Hangga Permana S.Kom</option>
-                                                                <option value="arief.apriandi@staff.itera.ac.id" >Arief Apriandi, S.T.</option>
-                                                                <option value="edi.saputro@staff.itera.ac.id" >Edi Saputro A.md</option>
-                                                                <option value="heru.ruwandar@staff.itera.ac.id" >Heru Ruwandar, S.T.</option>
-                                                                <option value="arif.setiawan@staff.itera.ac.id" >Arif Setiawan, S.Kom.</option>
-                                                                <option value="adam.japal@staff.itera.ac.id" >Adam Japal, S.Kom.</option>
-                                                                <option value="ega.budiman@staff.itera.ac.id" >Ega Budiman, S.Kom.</option>
-                                                                <option value="akza.noprian@staff.itera.ac.id" >Akza Noprian</option>
-                                                            </select>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td>
-                            <div id="notif_sukses"></div>
-                        </td>
-                        <td>
-                            <div style="float:right;">
-                                <input type="submit" name="simpan" value="Simpan" class=" btn btn-warning">
-                                <input type="text" style="display: none" name="id_tkt" id="id_tkt">
-                                <input type="text" style="display: none" name="action" id="action"/>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                </form>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
 
     <br/><br/><br/><br/><br/><br/>
     <div class="footer-copyright-area" style="position: fixed; bottom: 0px; left: 0px;width: 100%">
@@ -551,180 +469,7 @@ include_once "../base_url.php";
     <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/data-table/tableExport.js"></script>
     <script src="http://helpdesk.tik.itera.ac.id/assets_jeweler/js/data-table/data-table-active.js"></script>
     <script src="http://helpdesk.tik.itera.ac.id/assets/zoom-master/js/zoom.js"></script>
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-    <script>
-      var OneSignal = window.OneSignal || [];
-
-        OneSignal.push(function() {
-            OneSignal.init({
-            appId: "4939f0be-bceb-4df2-a5dc-7951125f918b",
-            });
-        })
-
-        OneSignal.push(function() {
-
-            var isPushSupported = OneSignal.isPushNotificationsSupported();
-            if(isPushSupported) {
-                
-                OneSignal.isPushNotificationsEnabled(function(isEnable) {
-                    if(isEnable){
-                        console.log('Notification are Enabled');
-                        OneSignal.sendTags({
-                            email: 'doni.14116084@student.itera.ac.id',
-                            level: 'mahasiswa'
-                        }).then(function(tagsSent) {
-                            // Callback called when tags have finished sending
-                            console.log(tagsSent);   
-                        });
-                        OneSignal.getUserId(function(userId) {
-                            console.log(userId);
-                            $.ajax({
-                                url: 'http://helpdesk.tik.itera.ac.id/init/storeid',
-                                method: 'post',
-                                data: {user_id:userId},
-                                success: function(res) {
-                                    console.log(res);
-                                },
-                                error: function(err) {
-                                    console.log(res)
-                                }
-                            })
-                        })
-                    }else{
-                        console.log('Notification are not enabled yet');
-                        OneSignal.push(function() {
-                            OneSignal.showHttpPrompt();
-                        });
-                    }
-                })
-
-            }else {
-
-            }
-
-            
-        });
-    </script>
-    <script type="text/javascript">
-            Highcharts.chart('kerusakan', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'bar'
-            },
-            title: {
-                text: 'Frekwensi Ticket Layanan'
-            },
-            credits: {
-                enabled: false
-            },
-            xAxis: {
-            categories: [                ],
-            },
-            yAxis: {
-            min: 0,
-            title: {
-                text: 'Jumlah ',
-                align: 'high'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.y}</b>'
-            },
-            plotOptions: {
-                bar: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.y}',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                        }
-                    }
-                }
-            },
-            series: [{
-                name: 'Layanan',
-                colorByPoint: true,
-                data: [
-                                    ] 
-            }]
-        });
-    </script>
-    <script type="text/javascript">
-    $(document).on('click', '#tambah_mod_ticket', function(e){
-        e.preventDefault();
-        $('#tambah_ticket').modal();
-        $('#action').val('tambah');
-        $('#keterangan').val('');
-        $('#lokasi').val('');
-        $('#layanan').val('');
-    });
-
-    $(document).on('submit', '#form_pesan', function(e){
-        e.preventDefault();
-        $('#notif_sukses').html('Loading...');
-        var data = new FormData(document.getElementById('form_pesan'));
-
-        $.ajax({
-            url : 'http://helpdesk.tik.itera.ac.id/user/ticket/tambah_pesan',
-            type : 'POST',
-            data : data,
-            processData: false, 
-            contentType: false,
-            success : function(msg){
-                $('#notif_sukses').html(msg);
-            }
-        });
-    });
-
-    $(document).on('submit', '#form_ticket', function(e){
-        e.preventDefault();
-        $('#notif_sukses').html('Loading...');
-        var data = new FormData(document.getElementById('form_ticket'));
-        var action = $('#action').val();
-
-        if(action == 'tambah'){
-            $.ajax({
-                url : 'http://helpdesk.tik.itera.ac.id/user/ticket/tambah_ticket',
-                type : 'POST',
-                data : data,
-                processData: false, 
-                contentType: false,
-                success : function(msg){
-                    $('#notif_sukses').html(msg);
-                }
-            });
-        }else if(action == 'edit'){
-            $.ajax({
-                url : 'http://helpdesk.tik.itera.ac.id/user/ticket/ubah_ticket',
-                type : 'POST',
-                data : data,
-                processData: false, 
-                contentType: false,
-                success : function(msg){
-                    $('#notif_sukses').html(msg);
-                }
-            });
-        }
-
-    });
-
-    $(document).on('click', '.notif', function(msg){
-        var id = $(this).attr('id');
-         $.ajax({
-            url: 'http://helpdesk.tik.itera.ac.id/admin/ticket/hapus_notif',
-            type: 'POST',
-            data: 'id='+id
-        });
-    });
-        
-</script></body>
+</body>
 
 </html>
 ?>

@@ -11,6 +11,7 @@ $data =  mysqli_fetch_array($data);
 if(!empty($data)){ // Jika tidak sama dengan empty (kosong)
   $_SESSION['email'] = $data['email']; // Set session untuk username (simpan username di session)
   $_SESSION['nama'] = $data['name']; // Set session untuk nama (simpan nama di session)
+  $_SESSION['id'] = $data['id'];
   
   setcookie("message","delete",time()-1); // Kita delete cookie message
   
