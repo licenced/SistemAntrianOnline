@@ -4,14 +4,14 @@ if( ! isset($_SESSION['email'])){ // Jika tidak ada session username berarti dia
     header("location: index.php"); // Kita Redirect ke halaman index.php karena belum login
 }
     include_once "../base_url.php";
-    include_once("../config/config.php");
+    include("../config/config.php");
 
     function kirimsms($sesi,$no_antri) {
         $userkey = "48tsf3"; //userkey lihat di zenziva
         $passkey = "g6cmyxvl15"; // set passkey di zenziva
         $telepon = $_SESSION['no_hp'];
         $nama = $_SESSION['nama'];
-        $message = "Hai $nama Nomor Antrian Kamu Untuk $sesi Adalah $no_antri";
+        $message = "Hai $nama Kode Booking Kamu Untuk $sesi Adalah $no_antri";
         $url = "https://reguler.zenziva.net/apps/smsapi.php";
         $curlHandle = curl_init();
         curl_setopt($curlHandle, CURLOPT_URL, $url);
@@ -28,29 +28,58 @@ if( ! isset($_SESSION['email'])){ // Jika tidak ada session username berarti dia
 
 
     if(isset($_POST['Submit']) && $_POST['sesi'] == "sesi-1") {
+        $cari_kode = mysqli_query($mysqli, "SELECT max(id_tiket) as kode from tiket");
+        $cari_kode = mysqli_fetch_array($cari_kode);
+        
+        $kode=substr($cari_kode['kode'],5 ,7);
+        $tambah = $kode+1;
+
+        if ($tambah<10) {
+            $id_tiket="TKS1-00".$tambah;
+        }elseif ($tambah<100) {
+            $id_tiket="TKS1-0".$tambah;
+        }else{
+            $id_tiket="TKS1-".$tambah;
+        }
+
         $id = $_SESSION['id'];
         $no_plat = $_POST['plat'];
         $tanggal = $_POST['tanggal'];
         $sesi = $_POST['sesi'];
         $kerusakan = $_POST['kerusakan'];
         $jam_daftar = date('H:i:s');
-        $result = mysqli_query($mysqli, "INSERT INTO tiket(no_plat,tanggal,sesi,jam,keluhan,pembuat) VALUES ('$no_plat','$tanggal','$sesi','$jam_daftar','$kerusakan','$id')");
+        $result = mysqli_query($mysqli, "INSERT INTO tiket(id_tiket,no_plat,tanggal,sesi,jam,keluhan,pembuat) VALUES ('$id_tiket','$no_plat','$tanggal','$sesi','$jam_daftar','$kerusakan','$id')");
         // header("location: ../views/testing.php");
         $no_antri = mysqli_query($mysqli, "SELECT id_tiket FROM tiket WHERE jam='$jam_daftar'");
         $no_antri = mysqli_fetch_array($no_antri);
-        kirimsms("Sesi-1",$no_antri[0]);
+        kirimsms("Sesi-1",$id_tiket);
     }else if(isset($_POST['Submit'])&& $_POST['sesi'] == "sesi-2"){
+        $cari_kode = mysqli_query($mysqli, "SELECT max(id_tiket) as kode from tiket_sesi2");
+        $cari_kode = mysqli_fetch_array($cari_kode);
+        
+        $kode=substr($cari_kode['kode'],5 ,7);
+        $tambah = $kode+1;
+
+        if ($tambah<10) {
+            $id_tiket="TKS2-00".$tambah;
+        }elseif ($tambah<100) {
+            $id_tiket="TKS2-0".$tambah;
+        }else{
+            $id_tiket="TKS2-".$tambah;
+        }
+
+
         $id = $_SESSION['id'];
         $no_plat = $_POST['plat'];
         $tanggal = $_POST['tanggal'];
         $sesi = $_POST['sesi'];
         $kerusakan = $_POST['kerusakan'];
         $jam_daftar = date('H:i:s');
-        $result = mysqli_query($mysqli, "INSERT INTO tiket_sesi2(no_plat,tanggal,sesi,jam,keluhan,pembuat) VALUES ('$no_plat','$tanggal','$sesi','$jam_daftar','$kerusakan','$id')");
+        $result = mysqli_query($mysqli, "INSERT INTO tiket_sesi2(id_tiket,no_plat,tanggal,sesi,jam,keluhan,pembuat) VALUES ('$id_tiket','$no_plat','$tanggal','$sesi','$jam_daftar','$kerusakan','$id')");
         // header("location: ../views/testing.php");
         $no_antri = mysqli_query($mysqli, "SELECT id_tiket FROM tiket_sesi2 WHERE jam='$jam_daftar'");
         $no_antri = mysqli_fetch_array($no_antri);
-        kirimsms("SESI-2",$no_antri[0]);
+        kirimsms("SESI-2",$id_tiket);
     }else{
         echo "HIAHSIAHD";
     }
