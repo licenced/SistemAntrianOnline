@@ -22,7 +22,7 @@ header("Refresh: $sec; url=$page");
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Dashboard User</title>
+    <title>Antrian User</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -191,30 +191,117 @@ header("Refresh: $sec; url=$page");
             </div>
         </div>
     </div>
-    <div class="section-admin container-fluid">
-        <div class="row admin text-center">
-            <div class="col-md-12">
-                    <div class="row">
-                    <div class="col-lg-12 col-md-24 col-sm-12 col-xs-12">
+
+<div class="section-admin container-fluid">
+    <div class="row admin text-center">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
-                        <h4 class="text-center text-uppercase"><b>Daftar antrian</b></h4>
-                        <div class="jumbotron col-md-6">
-                        <p style= "font-size:150px"><?php echo $nomer[0] ?></p>
-                            <h1 class="display-4">SESI 1</h1>
-                        </div>
-                        <div class=" col-md-1">
-                        
-                        </div>
-                        <div class="jumbotron col-md-5.5">
-                            <p style= "font-size:150px"><?php echo $nomer2[0] ?></p>
-                            <h1 class="display-4">SESI 2</h1>
+                        <h4 class="text-left text-uppercase"><b>Daftar Tiket</b></h4>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#1">Antrian Sesi 1</a></li>
+                            <li><a data-toggle="tab" href="#2">Antrian Sesi 2</a></li>
+                            
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="1" class="tab-pane fade in active table-responsive">
+                                <table id="daftar" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="col-md-1">No</th>
+                                        <th>No Ticket</th>
+                                        <th>Tgl Ticket</th>
+                                        <th>Nama</th>
+                                        <th>NIK</th>
+                                        <th>No Handphone</th>
+                                        <th>Plat Nomor</th>
+                                        <th>Deskripsi Kerusakan</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        include '../config/config.php';
+                                        $id = $_SESSION['id'];
+                                        $no = 1;
+                                        $tiket = mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE tanggal ='$tgl'");
+                                        if($tiket){
+                                            while($row = mysqli_fetch_array($tiket))
+                                            {
+                                                echo "<tr>
+                                                <td>".$no++."</td>
+                                                <td>".$row['id_tiket']."</td>
+                                                <td>".$row['tanggal']."</td>
+                                                <td>".$row['name']."</td>
+                                                <td>".$row['nik']."</td>
+                                                <td>".$row['mobile']."</td>
+                                                <td>".$row['no_plat']."</td>
+                                                <td>".$row['keluhan']."</td>
+                                                <td>".$row['keterangan']."</td>
+                                            </tr>";
+                                            }
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                            </div>
+
+                            <div id="2" class="tab-pane fade">
+                                <table id="daftar2" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-resizable="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover table-responsive" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th width="col-md-1">No</th>
+                                        <th>No Ticket</th>
+                                        <th>Tgl Ticket</th>
+                                        <th>Nama</th>
+                                        <th>NIK</th>
+                                        <th>Motor</th>
+                                        <th>Plat Nomor</th>
+                                        <th>Deskripsi Kerusakan</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php 
+                                $no2 = 1;
+                                $tiket2 = mysqli_query($mysqli,"SELECT tiket_sesi2.*, users.name, users.nik, users.mobile FROM tiket_sesi2 INNER JOIN users ON tiket_sesi2.pembuat=users.id WHERE tanggal ='$tgl'");
+                                if($tiket2){
+                                    while($row = mysqli_fetch_array($tiket2))
+                                    {
+                                        echo "<tr>
+                                        <td>".$no2++."</td>
+                                        <td>".$row['id_tiket']."</td>
+                                        <td>".$row['tanggal']."</td>
+                                        <td>".$row['name']."</td>
+                                        <td>".$row['nik']."</td>
+                                        <td>".$row['mobile']."</td>
+                                        <td>".$row['no_plat']."</td>
+                                        <td>".$row['keluhan']."</td>
+                                        <td>".$row['keterangan']."</td>
+                                    </tr>";
+                                    }
+                                }        
+                                
+                                ?>
+
+                                </tbody>
+                            </table>
+                            </div>
+
+                            
+                           
                         </div>
                     </div>
-                    </div>
-                    </div>
-            </div>    
+                </div>
+            </div>
         </div>
     </div>
+</div>
+    
 
     <br/><br/><br/><br/><br/><br/>
     <div class="footer-copyright-area" style="position: fixed; bottom: 0px; left: 0px;width: 100%">

@@ -234,6 +234,10 @@ include_once "../base_url.php";
                                                         <input type='submit' name='verifikasi' value='Verifikasi'/>
                                                         <input type='hidden' name='id' value=".$row['id_tiket'].">
                                                     </form>
+                                                    <form method='post' action='".$base_url."/controller/hapus.php'>
+                                                        <input type='submit' name='hapus' value='Hapus'/>
+                                                        <input type='hidden' name='id' value=".$row['id_tiket'].">
+                                                    </form>
                                                 </td>
                                                 </tr>";
                                             }
@@ -280,6 +284,10 @@ include_once "../base_url.php";
                                             <td>
                                                 <form method='post' action='".$base_url."/controller/verifikasi.php'>
                                                     <input type='submit' name='verifikasi-sesi2' value='Verifikasi'/>
+                                                    <input type='hidden' name='id' value=".$row['id_tiket'].">
+                                                </form>
+                                                <form method='post' action='".$base_url."/controller/hapus.php'>
+                                                    <input type='submit' name='hapus-sesi2' value='Hapus'/>
                                                     <input type='hidden' name='id' value=".$row['id_tiket'].">
                                                 </form>
                                             </td>
