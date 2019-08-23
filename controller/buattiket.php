@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once("../config/config.php");
+    
     if(isset($_POST['Submit']) && $_POST['sesi'] == "sesi-1") {
         $id = $_SESSION['id'];
         $no_plat = $_POST['plat'];
@@ -31,3 +32,6 @@
     }
 
 ?>
+
+
+

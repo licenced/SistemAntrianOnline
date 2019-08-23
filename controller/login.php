@@ -13,6 +13,7 @@ if(!empty($data)){ // Jika tidak sama dengan empty (kosong)
   $_SESSION['nama'] = $data['name']; // Set session untuk nama (simpan nama di session)
   $_SESSION['id'] = $data['id'];
   $_SESSION['level'] = $data['level'];
+  $_SESSION['no_hp'] = $data['mobile'];
   
   setcookie("message","delete",time()-1); // Kita delete cookie message
   if ($_SESSION['level'] == 1){

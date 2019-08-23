@@ -4,8 +4,29 @@ if( ! isset($_SESSION['email'])){ // Jika tidak ada session username berarti dia
     header("location: index.php"); // Kita Redirect ke halaman index.php karena belum login
 }
     include_once "../base_url.php";
-
     include_once("../config/config.php");
+
+    function kirimsms($sesi,$no_antri) {
+        $userkey = "48tsf3"; //userkey lihat di zenziva
+        $passkey = "g6cmyxvl15"; // set passkey di zenziva
+        $telepon = $_SESSION['no_hp'];
+        $nama = $_SESSION['nama'];
+        $message = "Hai $nama Nomor Antrian Kamu Untuk $sesi Adalah $no_antri";
+        $url = "https://reguler.zenziva.net/apps/smsapi.php";
+        $curlHandle = curl_init();
+        curl_setopt($curlHandle, CURLOPT_URL, $url);
+        curl_setopt($curlHandle, CURLOPT_POSTFIELDS, 'userkey='.$userkey.'&passkey='.$passkey.'&nohp='.$telepon.'&pesan='.urlencode($message));
+        curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curlHandle, CURLOPT_TIMEOUT,30);
+        curl_setopt($curlHandle, CURLOPT_POST, 1);
+        $results = curl_exec($curlHandle);
+        curl_close($curlHandle);
+    }
+
+
     if(isset($_POST['Submit']) && $_POST['sesi'] == "sesi-1") {
         $id = $_SESSION['id'];
         $no_plat = $_POST['plat'];
@@ -17,6 +38,7 @@ if( ! isset($_SESSION['email'])){ // Jika tidak ada session username berarti dia
         // header("location: ../views/testing.php");
         $no_antri = mysqli_query($mysqli, "SELECT id_tiket FROM tiket WHERE jam='$jam_daftar'");
         $no_antri = mysqli_fetch_array($no_antri);
+        kirimsms("Sesi-1",$no_antri[0]);
     }else if(isset($_POST['Submit'])&& $_POST['sesi'] == "sesi-2"){
         $id = $_SESSION['id'];
         $no_plat = $_POST['plat'];
@@ -28,7 +50,7 @@ if( ! isset($_SESSION['email'])){ // Jika tidak ada session username berarti dia
         // header("location: ../views/testing.php");
         $no_antri = mysqli_query($mysqli, "SELECT id_tiket FROM tiket_sesi2 WHERE jam='$jam_daftar'");
         $no_antri = mysqli_fetch_array($no_antri);
-        
+        kirimsms("SESI-2",$no_antri[0]);
     }else{
         echo "HIAHSIAHD";
     }
