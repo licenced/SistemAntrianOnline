@@ -190,6 +190,7 @@ include_once "../base_url.php";
                             <li class="active"><a data-toggle="tab" href="#1">Belum-Dikerjakan-Sesi 1</a></li>
                             <li><a data-toggle="tab" href="#2">Belum-Dikerjakan-Sesi 2</a></li>
                             <li><a data-toggle="tab" href="#3">Selesai-Dikerjakan</a></li>
+                            <li><a data-toggle="tab" href="#4">Selesai-Dikerjakan-Sesi 2</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -295,7 +296,7 @@ include_once "../base_url.php";
                                 <tbody>
                                 <?php 
                                 $no2 = 1;
-                                $tiket2 = mysqli_query($mysqli,"SELECT history_tiket.*, users.name, users.nik, users.mobile FROM history_tiket INNER JOIN users ON history_tiket.pembuat=users.id WHERE pembuat='$id'");
+                                $tiket2 = mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE pembuat='$id'");
                                 if($tiket2){
                                     while($row = mysqli_fetch_array($tiket2))
                                     {
@@ -317,6 +318,48 @@ include_once "../base_url.php";
                                 </tbody>
                             </table>
                             </div>
+
+                            <div id="4" class="tab-pane fade">
+                                <table id="daftar3" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-resizable="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover table-responsive" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th width="col-md-1">No</th>
+                                        <th>No Ticket</th>
+                                        <th>Tgl Ticket</th>
+                                        <th>Nama</th>
+                                        <th>NIK</th>
+                                        <th>Motor</th>
+                                        <th>Plat Nomor</th>
+                                        <th>Deskripsi Kerusakan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php 
+                                $no2 = 1;
+                                $tiket2 = mysqli_query($mysqli,"SELECT tiket_sesi2.*, users.name, users.nik, users.mobile FROM tiket_sesi2 INNER JOIN users ON tiket_sesi2.pembuat=users.id WHERE pembuat='$id'");
+                                if($tiket2){
+                                    while($row = mysqli_fetch_array($tiket2))
+                                    {
+                                        echo "<tr>
+                                        <td>".$no2++."</td>
+                                        <td>".$row['id_tiket']."</td>
+                                        <td>".$row['tanggal']."</td>
+                                        <td>".$row['name']."</td>
+                                        <td>".$row['nik']."</td>
+                                        <td>".$row['mobile']."</td>
+                                        <td>".$row['no_plat']."</td>
+                                        <td>".$row['keluhan']."</td>
+                                    </tr>";
+                                    }
+                                }        
+                                
+                                ?>
+
+                                </tbody>
+                            </table>
+                            </div>
+
                         </div>
                     </div>
                 </div>
