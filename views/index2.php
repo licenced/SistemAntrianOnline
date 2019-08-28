@@ -43,7 +43,7 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
-
+<div id="wrapper">
 	<!-- Header -->
 	<header>
 		<!-- Header desktop -->
@@ -68,6 +68,8 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 			</div>
 		</div>
     </header>
+
+
     
 	<!-- Slide1 -->
 	<section class="section-slide">
@@ -77,7 +79,14 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
 							Sestem Antrian Online Honda
+						<div class="text-center">
+							  <a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Masuk</a>
+							</div>
+							<div class="text-center">
+							  <a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Daftar</a>
+							</div>
 						</span>
+							
 					</div>
 				</div>
 
@@ -85,7 +94,14 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rollIn">
                         Sistem Antrian Online Honda
+                        <div class="text-center">
+							  <a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Masuk</a>
+							</div>
+							<div class="text-center">
+							  <a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Daftar</a>
+							</div>
 						</span>
+						
 					</div>
 				</div>
 
@@ -93,12 +109,101 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rotateInDownLeft">
 						Sistem Antrian Online Honda
+							  <div class="text-center">
+							  <a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Masuk</a>
+							</div>
+							<div class="text-center">
+							  <a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Daftar</a>
+							</div>
 						</span>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+</div>
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Masuk</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <h4>Email</h4><br>
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input type="email" id="defaultForm-email" class="form-control-lg" placeholder="Masukkan Email">
+        </div>
+
+        <div class="md-form mb-4">
+          <h4>Password</h4><br>
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" class="form-control-lg" placeholder="Masukkan Password">
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Buat Akun</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+      	<div class="md-form-half mb-5">
+          <h4>Nama</h4><br>
+          <i class="fa fa-user prefix grey-text"></i>
+          <input type="text" id="defaultForm-text" class="form-control-lg" placeholder="Masukkan Nama">
+        </div>
+
+        <div class="md-form-half mb-5">
+          <h4>Email</h4><br>
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input type="email" id="defaultForm-email" class="form-control-lg" placeholder="Masukkan Email">
+        </div>
+
+        <div class="md-form mb-4">
+          <h4>Password</h4><br>
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" class="form-control-lg" placeholder="Masukkan Password">
+        </div>
+
+        <div class="md-form mb-5">
+          <h4>No Handphone</h4><br>
+          <i class="fa fa-phone-square prefix grey-text"></i>
+          <input type="text" id="defaultForm-text" class="form-control-lg" placeholder="Contoh : 0812345678">
+        </div>
+
+        <div class="md-form mb-5">
+          <h4>NIK</h4><br>
+          <i class="fa fa-calendar prefix grey-text"></i>
+          <input type="text" id="defaultForm-text" class="form-control-lg" placeholder="Contoh : 1871XXXXXXXXXXXX">
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-primary">Daftar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 	<!-- Footer -->
 	<footer class="bg1">
