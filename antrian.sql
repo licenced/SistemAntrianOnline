@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2019 at 03:47 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Waktu pembuatan: 29 Agu 2019 pada 04.23
+-- Versi server: 10.1.36-MariaDB
+-- Versi PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,15 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nyoba`
+-- Database: `antrian`
 --
-CREATE DATABASE IF NOT EXISTS `nyoba` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `nyoba`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history_tiket`
+-- Struktur dari tabel `history_tiket`
 --
 
 CREATE TABLE `history_tiket` (
@@ -42,7 +40,7 @@ CREATE TABLE `history_tiket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `history_tiket`
+-- Dumping data untuk tabel `history_tiket`
 --
 
 INSERT INTO `history_tiket` (`id_tiket`, `no_plat`, `tanggal`, `sesi`, `jam`, `keluhan`, `keterangan`, `pembuat`) VALUES
@@ -56,7 +54,7 @@ INSERT INTO `history_tiket` (`id_tiket`, `no_plat`, `tanggal`, `sesi`, `jam`, `k
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiket`
+-- Struktur dari tabel `tiket`
 --
 
 CREATE TABLE `tiket` (
@@ -66,14 +64,23 @@ CREATE TABLE `tiket` (
   `sesi` varchar(7) NOT NULL,
   `jam` time NOT NULL,
   `keluhan` varchar(100) NOT NULL,
-  `keterangan` varchar(7) NOT NULL DEFAULT 'belum',
+  `keterangan` varchar(25) NOT NULL DEFAULT 'belum',
   `pembuat` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tiket`
+--
+
+INSERT INTO `tiket` (`id_tiket`, `no_plat`, `tanggal`, `sesi`, `jam`, `keluhan`, `keterangan`, `pembuat`) VALUES
+(1, 'BE3322AI', '2019-08-29', 'sesi-1', '02:54:29', 'DFSF', 'selesai', 8),
+(2, 'BE3322lD', '2019-08-29', 'sesi-1', '03:22:10', 'dadawedw', 'sedang dikerjakan', 8),
+(3, 'BE3322Ao', '2019-08-29', 'sesi-1', '03:22:33', 'kjbkbkj', 'belum', 8);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiket_sesi2`
+-- Struktur dari tabel `tiket_sesi2`
 --
 
 CREATE TABLE `tiket_sesi2` (
@@ -90,7 +97,7 @@ CREATE TABLE `tiket_sesi2` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -100,96 +107,100 @@ CREATE TABLE `users` (
   `password` varchar(100) NOT NULL,
   `nik` varchar(100) NOT NULL,
   `mobile` varchar(15) DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `no_plat` varchar(12) DEFAULT NULL,
+  `no_mesin` int(128) DEFAULT NULL,
   `level` int(11) DEFAULT '2'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `nik`, `mobile`, `level`) VALUES
-(8, 'doni ganteng', 'tamfan@doni.com', '123', '12312', '08123', 2),
-(9, 'ragil', 'mragill98@gmail.com', '123', '123123', '123123', 2),
-(10, 'Muhammad Ragil', 'mragiltrirezar@gmail.com', '123', '123123', '081275973221', 1),
-(11, 'admin', 'admin', 'admin', '123456', '123456', 1);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `nik`, `mobile`, `tanggal_lahir`, `no_plat`, `no_mesin`, `level`) VALUES
+(8, 'Doni Agus Adila', 'tamfan@doni.com', '123', '12312', '08123', '2019-08-28', 'BE 1234 CA', 2147483647, 2),
+(9, 'ragil', 'mragill98@gmail.com', '123', '123123', '123123', '0000-00-00', '', 0, 2),
+(10, 'Muhammad Ragil', 'mragiltrirezar@gmail.com', '123', '123123', '081275973221', '0000-00-00', '', 0, 1),
+(11, 'admin', 'admin', 'admin', '123456', '123456', '0000-00-00', '', 0, 1),
+(12, 'test', 'test@test.com', '123123', '123123123', '123123123', '0000-00-00', '', 0, 2);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `history_tiket`
+-- Indeks untuk tabel `history_tiket`
 --
 ALTER TABLE `history_tiket`
   ADD PRIMARY KEY (`id_tiket`),
   ADD KEY `pembuat_tiket` (`pembuat`);
 
 --
--- Indexes for table `tiket`
+-- Indeks untuk tabel `tiket`
 --
 ALTER TABLE `tiket`
   ADD PRIMARY KEY (`id_tiket`),
   ADD KEY `pembuat` (`pembuat`);
 
 --
--- Indexes for table `tiket_sesi2`
+-- Indeks untuk tabel `tiket_sesi2`
 --
 ALTER TABLE `tiket_sesi2`
   ADD PRIMARY KEY (`id_tiket`),
   ADD KEY `pembuatt` (`pembuat`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `history_tiket`
+-- AUTO_INCREMENT untuk tabel `history_tiket`
 --
 ALTER TABLE `history_tiket`
   MODIFY `id_tiket` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT for table `tiket`
+-- AUTO_INCREMENT untuk tabel `tiket`
 --
 ALTER TABLE `tiket`
-  MODIFY `id_tiket` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tiket` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tiket_sesi2`
+-- AUTO_INCREMENT untuk tabel `tiket_sesi2`
 --
 ALTER TABLE `tiket_sesi2`
   MODIFY `id_tiket` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `history_tiket`
+-- Ketidakleluasaan untuk tabel `history_tiket`
 --
 ALTER TABLE `history_tiket`
   ADD CONSTRAINT `pembuat_tiket` FOREIGN KEY (`pembuat`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tiket`
+-- Ketidakleluasaan untuk tabel `tiket`
 --
 ALTER TABLE `tiket`
   ADD CONSTRAINT `pembuat` FOREIGN KEY (`pembuat`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tiket_sesi2`
+-- Ketidakleluasaan untuk tabel `tiket_sesi2`
 --
 ALTER TABLE `tiket_sesi2`
   ADD CONSTRAINT `pembuatt` FOREIGN KEY (`pembuat`) REFERENCES `users` (`id`);
