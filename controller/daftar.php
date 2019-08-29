@@ -13,7 +13,7 @@
     
         // Insert user data into table
         $result = mysqli_query($mysqli, "INSERT INTO users(name,email,password,nik,mobile) VALUES('$name','$email','$password','$nik','$mobile')");
-        header("location: ../views/index.php"); 
+        header("location: ../views/index2.php"); 
     }else {
         echo "HIAHSIAHD";
     }

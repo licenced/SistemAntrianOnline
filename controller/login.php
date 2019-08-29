@@ -14,6 +14,11 @@ if(!empty($data)){ // Jika tidak sama dengan empty (kosong)
   $_SESSION['id'] = $data['id'];
   $_SESSION['level'] = $data['level'];
   $_SESSION['no_hp'] = $data['mobile'];
+  $_SESSION['nik'] = $data['nik'];
+  $_SESSION['password'] = $data['password'];
+  $_SESSION['tanggal_lahir'] = $data['tanggal_lahir'];
+  $_SESSION['no_plat'] = $data['no_plat'];
+  $_SESSION['no_mesin'] = $data['no_mesin'];
   
   setcookie("message","delete",time()-1); // Kita delete cookie message
   if ($_SESSION['level'] == 1){
