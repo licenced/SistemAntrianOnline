@@ -4,16 +4,17 @@
     if(isset($_POST['Submit'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
-        $nik = $_POST['nik'];
         $password = $_POST['password'];
         $mobile = $_POST['mobile'];
+        $nik = $_POST['nik'];
+
         echo $email;
 
         // include database connection file
     
         // Insert user data into table
         $result = mysqli_query($mysqli, "INSERT INTO users(name,email,password,nik,mobile) VALUES('$name','$email','$password','$nik','$mobile')");
-        header("location: ../views/index2.php"); 
+        header("location: ../views/index.php"); 
     }else {
         echo "HIAHSIAHD";
     }
