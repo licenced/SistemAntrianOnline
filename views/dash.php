@@ -188,10 +188,8 @@ include_once "../base_url.php";
                     <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
                         <h4 class="text-left text-uppercase"><b>Daftar Tiket</b> <a data-target="#tambah_ticket" id="tambah_mod_ticket" href="#" data-toggle="modal" style="text-decoration:none;" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-square" aria-hidden="true"></i> Buat Tiket</a></h4>
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#1">Belum-Dikerjakan-Sesi 1</a></li>
-                            <li><a data-toggle="tab" href="#2">Belum-Dikerjakan-Sesi 2</a></li>
+                            <li class="active"><a data-toggle="tab" href="#1">Belum-Dikerjakan</a></li>
                             <li><a data-toggle="tab" href="#3">Selesai-Dikerjakan</a></li>
-                            <li><a data-toggle="tab" href="#4">Selesai-Dikerjakan-Sesi 2</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -236,49 +234,6 @@ include_once "../base_url.php";
                             </table>
                             </div>
 
-                            <div id="2" class="tab-pane fade">
-                                <table id="daftar2" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-resizable="true"
-                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover table-responsive" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th width="col-md-1">No</th>
-                                        <th>No Ticket</th>
-                                        <th>Tgl Ticket</th>
-                                        <th>Nama</th>
-                                        <th>NIK</th>
-                                        <th>Motor</th>
-                                        <th>Plat Nomor</th>
-                                        <th>Deskripsi Kerusakan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php 
-                                $no2 = 1;
-                                $tiket2 = mysqli_query($mysqli,"SELECT tiket_sesi2.*, users.name, users.nik, users.mobile FROM tiket_sesi2 INNER JOIN users ON tiket_sesi2.pembuat=users.id WHERE pembuat='$id' AND keterangan='belum'");
-                                if($tiket2){
-                                    while($row = mysqli_fetch_array($tiket2))
-                                    {
-                                        echo "<tr>
-                                        <td>".$no2++."</td>
-                                        <td>".$row['id_tiket']."</td>
-                                        <td>".$row['tanggal']."</td>
-                                        <td>".$row['name']."</td>
-                                        <td>".$row['nik']."</td>
-                                        <td>".$row['mobile']."</td>
-                                        <td>".$row['no_plat']."</td>
-                                        <td>".$row['keluhan']."</td>
-                                    </tr>";
-                                    }
-                                }        
-                                
-                                ?>
-
-                                </tbody>
-                            </table>
-                            </div>
-
-                            
-                            
                             <div id="3" class="tab-pane fade">
                                 <table id="daftar3" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-resizable="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover table-responsive" style="width: 100%">
@@ -297,48 +252,7 @@ include_once "../base_url.php";
                                 <tbody>
                                 <?php 
                                 $no2 = 1;
-                                $tiket2 = mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE pembuat='$id'");
-                                if($tiket2){
-                                    while($row = mysqli_fetch_array($tiket2))
-                                    {
-                                        echo "<tr>
-                                        <td>".$no2++."</td>
-                                        <td>".$row['id_tiket']."</td>
-                                        <td>".$row['tanggal']."</td>
-                                        <td>".$row['name']."</td>
-                                        <td>".$row['nik']."</td>
-                                        <td>".$row['mobile']."</td>
-                                        <td>".$row['no_plat']."</td>
-                                        <td>".$row['keluhan']."</td>
-                                    </tr>";
-                                    }
-                                }        
-                                
-                                ?>
-
-                                </tbody>
-                            </table>
-                            </div>
-
-                            <div id="4" class="tab-pane fade">
-                                <table id="daftar3" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-resizable="true"
-                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover table-responsive" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th width="col-md-1">No</th>
-                                        <th>No Ticket</th>
-                                        <th>Tgl Ticket</th>
-                                        <th>Nama</th>
-                                        <th>NIK</th>
-                                        <th>Motor</th>
-                                        <th>Plat Nomor</th>
-                                        <th>Deskripsi Kerusakan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php 
-                                $no2 = 1;
-                                $tiket2 = mysqli_query($mysqli,"SELECT tiket_sesi2.*, users.name, users.nik, users.mobile FROM tiket_sesi2 INNER JOIN users ON tiket_sesi2.pembuat=users.id WHERE pembuat='$id'");
+                                $tiket2 = mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE pembuat='$id' AND keterangan='selesai'");
                                 if($tiket2){
                                     while($row = mysqli_fetch_array($tiket2))
                                     {
@@ -390,20 +304,23 @@ include_once "../base_url.php";
                     </tr>
 
                     <tr>
-                        <th class="col-md-4">Jam Booking</th>
+                        <th class="col-md-4">No. Plat</th>
                         <td class="col-md-8">
-                            <select name="sesi" id="sesi" class="form-control" required>
-                                <option value="">---- pilih ----</option>
-                                <option value="sesi-1" >Sesi 1 : 08:00-12:00</option>
-                                <option value="sesi-2" >Sesi 2 : 13:00-15.30</option>
-                            </select>
+                            <input type="text" name="plat" required>
                         </td>
                     </tr>
 
                     <tr>
-                        <th class="col-md-4">No. Plat</th>
+                        <th class="col-md-4">No. Mesin</th>
                         <td class="col-md-8">
-                            <input type="text" name="plat" required>
+                            <input type="text" name="mesin" required>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="col-md-4">Nama STNK</th>
+                        <td class="col-md-8">
+                            <input type="text" name="stnk" required>
                         </td>
                     </tr>
 

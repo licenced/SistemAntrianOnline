@@ -10,22 +10,18 @@ if( ! isset($_SESSION['email'])){ // Jika tidak ada session username berarti dia
     if(isset($_POST['Submit'])) {
 
         $id = $_SESSION['id'];
-        $no_plat = $_POST['no_plat'];
         $tanggal = $_POST['tanggal_lahir'];
-        $no_mesin = $_POST['no_mesin'];
         $nama = $_POST['name'];
         $password = $_POST['password'];
         $nik = $_POST['nik'];
         $email = $_POST['email'];
-        $result = mysqli_query($mysqli, "UPDATE users SET no_plat = '$no_plat' , tanggal_lahir = '$tanggal' , no_mesin = '$no_mesin' , name = '$nama' , password = '$password' , nik = '$nik' , email = '$email' WHERE id = '$id'");
-        $_SESSION['no_plat']=$no_plat;
+        $result = mysqli_query($mysqli, "UPDATE users SET tanggal_lahir = '$tanggal' , name = '$nama' , password = '$password' , nik = '$nik' , email = '$email' WHERE id = '$id'");
         $_SESSION['email'] = $email;
         $_SESSION['nama'] = $nama;
         $_SESSION['id'] = $id;
         $_SESSION['nik'] = $nik;
         $_SESSION['password'] = $password;
         $_SESSION['tanggal_lahir'] = $tanggal;
-        $_SESSION['no_mesin'] = $no_mesin;
         
     }else{
         echo "HIAHSIAHD";

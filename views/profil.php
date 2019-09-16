@@ -221,20 +221,6 @@ include_once "../base_url.php";
                             <input type="date" name="tanggal_lahir" class="form-control-lg" value="<?php echo $_SESSION['tanggal_lahir'] ?>" />
                         </td>
                     </tr>
-
-                    <tr class="text-left">
-                        <th class="col-md-4">No Plat</th>
-                        <td class="col-md-8">
-                            <input type="text" name="no_plat" class="form-control-lg" value="<?php echo $_SESSION['no_plat'] ?>" />
-                        </td>
-                    </tr>
-
-                    <tr class="text-left">
-                        <th class="col-md-4">No Mesin</th>
-                        <td class="col-md-8">
-                            <input type="text" name="no_mesin" class="form-control-lg" value="<?php echo $_SESSION['no_mesin'] ?>" />
-                        </td>
-                    </tr>
                         <td>
                             <div id="notif_sukses"></div>
                         </td>

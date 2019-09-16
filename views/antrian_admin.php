@@ -9,6 +9,7 @@ if( isset($_SESSION['email']) && $_SESSION['level']==1){ // Jika ada session ema
 }
 include_once "../base_url.php";
 include_once("../config/config.php");
+$tglview = date("d-m-Y");
 $tgl = date("Y-m-d");
 $tiket = mysqli_query($mysqli,"SELECT * FROM tiket WHERE tanggal='$tgl' AND keterangan='belum'");
 $nomer = mysqli_fetch_array($tiket);
@@ -202,12 +203,7 @@ header("Refresh: $sec; url=$page");
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
-                        <h4 class="text-left text-uppercase"><b>Daftar Tiket</b></h4>
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#1">Antrian Sesi 1</a></li>
-                            <li><a data-toggle="tab" href="#2">Antrian Sesi 2</a></li>
-                            
-                        </ul>
+                        <h1 class="text-center text-uppercase"><b>Daftar Antrian <?php echo $tglview ?></b></h1>
 
                         <div class="tab-content">
                             <div id="1" class="tab-pane fade in active table-responsive">
@@ -251,45 +247,7 @@ header("Refresh: $sec; url=$page");
                                     ?>
                                 </tbody>
                             </table>
-                            </div>
-
-                            <div id="2" class="tab-pane fade">
-                                <table id="daftar2" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-resizable="true"
-                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" class="table table-striped table-bordered table-hover table-responsive" style="width: 100%">
-                                <thead>
-                                    <tr>
-                                        <th width="col-md-1">No</th>
-                                        <th>No Ticket</th>
-                                        <th>Tgl Ticket</th>
-                                        <th>Nama</th>
-                                        <th>NIK</th>
-                                        <th>Motor</th>
-                                        <th>Plat Nomor</th>
-                                        <th>Deskripsi Kerusakan</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php 
-                                $no2 = 1;
-                                $tiket2 = mysqli_query($mysqli,"SELECT tiket_sesi2.*, users.name, users.nik, users.mobile FROM tiket_sesi2 INNER JOIN users ON tiket_sesi2.pembuat=users.id WHERE tanggal ='$tgl'");
-                                if($tiket2){
-                                    while($row = mysqli_fetch_array($tiket2))
-                                    {
-                                        echo "<tr>
-                                        <td>".$no2++."</td>
-                                        <td>".$row['id_tiket']."</td>
-                                        <td>".$row['tanggal']."</td>
-                                        <td>".$row['name']."</td>
-                                        <td>".$row['nik']."</td>
-                                        <td>".$row['mobile']."</td>
-                                        <td>".$row['no_plat']."</td>
-                                        <td>".$row['keluhan']."</td>
-                                        <td>".$row['keterangan']."</td>
-                                    </tr>";
-                                    }
-                                }        
-                                
+                            </div>  
                                 ?>
 
                                 </tbody>
