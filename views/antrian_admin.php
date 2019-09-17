@@ -13,8 +13,7 @@ $tglview = date("d-m-Y");
 $tgl = date("Y-m-d");
 $tiket = mysqli_query($mysqli,"SELECT * FROM tiket WHERE tanggal='$tgl' AND keterangan='belum'");
 $nomer = mysqli_fetch_array($tiket);
-$tiket2 = mysqli_query($mysqli,"SELECT * FROM tiket_sesi2 WHERE tanggal='$tgl' AND keterangan='belum'");
-$nomer2 = mysqli_fetch_array($tiket2);
+
 
 $page = $_SERVER['PHP_SELF'];
 $sec = "600";
@@ -248,7 +247,7 @@ header("Refresh: $sec; url=$page");
                                 </tbody>
                             </table>
                             </div>  
-                                ?>
+                                
 
                                 </tbody>
                             </table>

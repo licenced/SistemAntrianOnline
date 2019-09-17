@@ -5,7 +5,7 @@ $email = $_POST['email']; // Ambil value username yang dikirim dari form
 $password = $_POST['password']; // Ambil value password yang dikirim dari form
 // Buat query untuk mengecek apakah ada data user dengan username dan password yang dikirim dari form
 
-$data = mysqli_query($mysqli, "SELECT * FROM users WHERE email='$email' AND password='$password'");
+$data = mysqli_query($mysqli, "SELECT * FROM users WHERE email='$email' AND password='$password' AND status='sudah'");
 $data =  mysqli_fetch_array($data);
 // Cek apakah variabel $data ada datanya atau tidak
 if(!empty($data)){ // Jika tidak sama dengan empty (kosong)
