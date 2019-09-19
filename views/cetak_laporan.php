@@ -26,7 +26,7 @@ header("Refresh: $sec; url=$page");
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Antrian Admin</title>
+    <title>Laporan Admin</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -86,8 +86,8 @@ header("Refresh: $sec; url=$page");
                         <ul class="submenu-angle" aria-expanded="true">
                             
                             <li class=""><a title="Tiket" href="dashboard_admin.php"><i class="fa fa-plus-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Tiket</span></a></li>
-                            <li class="active1"><a title="Antrian" href="antrian_admin.php"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Antrian</span></a></li>
-                            <li class=""><a title="Laporan" href="cetak_laporan.php"><i class="fa fa-file-download sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Laporan</span></a></li>
+                            <li class=""><a title="Antrian" href="antrian_admin.php"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Antrian</span></a></li>
+                            <li class="active1"><a title="Laporan" href="cetak_laporan.php"><i class="fa fa-file-download sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Laporan</span></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -203,7 +203,7 @@ header("Refresh: $sec; url=$page");
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
-                        <h1 class="text-center text-uppercase"><b>Daftar Antrian <?php echo $tglview ?></b></h1>
+                    <h4 class="text-left text-uppercase"><b>Cetak Laporan</b> <a data-target="#cetak" id="cetak_mod_laporan" href="#" data-toggle="modal" style="text-decoration:none;" class="btn btn-primary btn-sm pull-right"><i class="fa fa-file-download" aria-hidden="true"></i> Cetak Laporan</a></h4>
 
                         <div class="tab-content">
                             <div id="1" class="tab-pane fade in active table-responsive">
@@ -227,9 +227,9 @@ header("Refresh: $sec; url=$page");
                                         include '../config/config.php';
                                         $id = $_SESSION['id'];
                                         $no = 1;
-                                        $tiket = mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE tanggal ='$tgl'");
-                                        if($tiket){
-                                            while($row = mysqli_fetch_array($tiket))
+                                        $tiket2 = mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE keterangan='selesai'");
+                                        if($tiket2){
+                                            while($row = mysqli_fetch_array($tiket2))
                                             {
                                                 echo "<tr>
                                                 <td>".$no++."</td>
@@ -255,7 +255,7 @@ header("Refresh: $sec; url=$page");
                             </div>
 
                             
-                           
+                        
                         </div>
                     </div>
                 </div>
@@ -264,6 +264,66 @@ header("Refresh: $sec; url=$page");
     </div>
 </div>
     
+<!-- Modal Cetak Laporan -->
+<div class="modal fade" id="cetak" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Cetak Laporan</h4>
+        </div>
+        <div class="modal-body">
+            <div class="panel-body">
+                <form method="post" target="_blank" action="<?php echo $base_url ?>controller/cetak.php">
+                    <div class="form-group">
+                        <div class="form-group">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="form-group">Dari Tanggal </div>
+                                </td>
+                                <td width="5%">
+                                    <div class="form-group">:</div>
+                                </td>
+                                <td>
+                                    <div class="form-group"> 
+                                        <input type="date" class="form-control" name="ta" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            <td>
+                                    <div class="form-group">Sampai Tanggal </div>
+                                </td>
+                                <td width="5%">
+                                    <div class="form-group">:</div>
+                                </td>
+                                <td>
+                                    <div class="form-group"> 
+                                        <input type="date" class="form-control" name="tb" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                            <td></td>
+                            <td></td>
+                                <td>
+                                    <input type="submit" name="cetak" class="btn btn-primary btn-sm" value="Cetak Laporan" >
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="../controller/download_all.php" target="_blank" class=" btn btn-primary btn-sm">Cetak Semua</a>
+                </div>
+        </div>
+        </div>
+    </div>
+</div>
 
     <br/><br/><br/><br/><br/><br/>
     <div class="footer-copyright-area" style="position: fixed; bottom: 0px; left: 0px;width: 100%">

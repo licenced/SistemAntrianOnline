@@ -188,7 +188,7 @@ include_once "../base_url.php";
                     <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
                         <h4 class="text-left text-uppercase"><b>Daftar Tiket</b> <a data-target="#tambah_ticket" id="tambah_mod_ticket" href="#" data-toggle="modal" style="text-decoration:none;" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-square" aria-hidden="true"></i> Buat Tiket</a></h4>
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#1">Belum-Dikerjakan</a></li>
+                            <li class="active"><a data-toggle="tab" href="#1">Belum Dikerjakan</a></li>
                             <li><a data-toggle="tab" href="#3">Selesai-Dikerjakan</a></li>
                         </ul>
 

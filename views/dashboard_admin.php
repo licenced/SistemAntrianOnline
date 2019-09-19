@@ -73,6 +73,7 @@ include_once "../base_url.php";
                             
                             <li class="active1"><a title="Tiket" href="dashboard_admin.php"><i class="fa fa-plus-square sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Tiket</span></a></li>
                             <li class=""><a title="Antrian" href="antrian_admin.php"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Antrian</span></a></li>
+                            <li class=""><a title="Laporan" href="cetak_laporan.php"><i class="fa fa-file-download sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Laporan</span></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -188,7 +189,7 @@ include_once "../base_url.php";
                     <div class="admin-content analysis-progrebar-ctn res-mg-t-15">
                         <h4 class="text-left text-uppercase"><b>Daftar Tiket</b></h4>
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#1">Belum-Dikerjakan</a></li>
+                            <li class="active"><a data-toggle="tab" href="#1">Belum Dikerjakan</a></li>
                             <li><a data-toggle="tab" href="#2">Selesai Dikerjakan</a></li>
                         </ul>
 
@@ -261,7 +262,7 @@ include_once "../base_url.php";
                                         <th>Tgl Ticket</th>
                                         <th>Nama</th>
                                         <th>NIK</th>
-                                        <th>Motor</th>
+                                        <th>No Handphone</th>
                                         <th>Plat Nomor</th>
                                         <th>Deskripsi Kerusakan</th>
                                     </tr>
