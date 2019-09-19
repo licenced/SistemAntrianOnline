@@ -40,8 +40,9 @@ $pdf->SetFont('Times','',12,'C');
 // Baca input tanggal yang dikirimkan user
 $dari =$_POST['ta'];
 $sampai =$_POST['tb'];
-$no=1;
-	$query=mysqli_query("SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE keterangan='selesai' AND (tanggal BETWEEN '$dari' AND '$sampai' ) ORDER BY tanggal DESC");
+if(isset($dari) && isset($sampai)){
+	$no=1;
+	$query=mysqli_query($mysqli,"SELECT tiket.*, users.name, users.nik, users.mobile FROM tiket INNER JOIN users ON tiket.pembuat=users.id WHERE keterangan='selesai' AND (tanggal BETWEEN '$dari' AND '$sampai' ) ORDER BY tanggal DESC");
 	while($row = mysqli_fetch_array($query)){
 	$pdf->Cell(10,8, $no++ , 1, 0,'C');
 	$pdf->Cell(40,8, $row['id_tiket'],1, 0, 'C');
@@ -65,4 +66,9 @@ $pdf->Cell(50,5,'',0,1);
 ob_clean();
 	$pdf->Output();
 	$pdf->Stream(array("Attachment" => FALSE));
+}else {
+	echo "Pilih Data Terlebih Dahulu!";
+}
+
+
 ?>
